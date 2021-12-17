@@ -92,6 +92,7 @@ export const BookListWrapper = styled.div`
   padding: 5px;
   grid-gap: 20px;
   display: grid;
+  position: relative;
   grid-template-columns: auto auto;
 
   @media (max-width: 700px) {

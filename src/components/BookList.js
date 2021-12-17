@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { generatePath, useNavigate } from 'react-router-dom'
+import { LottieLoading } from './LottieLoading'
 import {
   BookSection,
   BookTitleHeader,
@@ -15,6 +16,7 @@ const Background = 'https://i.imgur.com/fUBGg4L.jpg'
 
 export const BookList = () => {
   const [bookList, setBookList] = useState([])
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -26,9 +28,11 @@ export const BookList = () => {
   }, [])
 
   const fetchBookList = () => {
+    setLoading(true)
     fetch('https://carling-bookdata-api.herokuapp.com/books')
       .then((res) => res.json())
-      .then((data) => setBookList(data))
+      .then((data) => setTimeout(() => setBookList(data), 8000))
+      .finally(() => setTimeout(() => setLoading(false), 8000))
   }
 
   return (
@@ -49,6 +53,7 @@ export const BookList = () => {
           </Button>
         </ListHeader>
         <BookListWrapper>
+          {loading && <LottieLoading />}
           {bookList.map((book) => (
             <BookCard key={book._id}>
               <BookTitleHeader>
