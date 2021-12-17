@@ -43,6 +43,9 @@ const AboutContainer = styled.section`
   h2,
   h3 {
     text-align: center;
+    a {
+      color: #fff;
+    }
   }
 `
 const Footer = styled.div`
@@ -91,7 +94,16 @@ export const About = () => {
               Frontend built with React to display book data from an API. API
               built with MongoDB and deployed with Heroku.
             </h2>
-            <h3>Following endpoints are available from the API:</h3>
+            <h3>
+              Following endpoints are available from the{' '}
+              <a
+                href='https://carling-bookdata-api.herokuapp.com/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                API:
+              </a>
+            </h3>
             <div>
               <h4>Path: /books</h4>
               <p>Shows all books available</p>
