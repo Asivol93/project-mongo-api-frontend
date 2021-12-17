@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Button, TitleWrapper, Select } from './StyledComponents'
 import { generatePath, useNavigate } from 'react-router-dom'
@@ -57,7 +57,6 @@ export const TitleContainer = styled.div`
 `
 
 export const StartPage = () => {
-  const [ratings, setRatings] = useState()
   const navigate = useNavigate()
 
   return (
