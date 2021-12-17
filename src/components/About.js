@@ -97,7 +97,7 @@ export const About = () => {
               <p>Shows all books available</p>
             </div>
             <div>
-              <h4>Path: /books/id/:id</h4>
+              <h4>Path: /books/:id</h4>
               <p>Shows you the book with matching id</p>
             </div>
             <div>
