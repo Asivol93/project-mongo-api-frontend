@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 
 export const Button = styled.button`
-  padding: 10px;
-  width: 110px;
+  width: 130px;
   height: 40px;
+  text-align: center;
+
   color: #7153ff;
   margin: 0px 10px 0px 10px;
   border: solid 3px #7153ff;
@@ -12,13 +13,14 @@ export const Button = styled.button`
   color: #fff;
   font-family: 'Montserrat', sans-serif;
   &:hover {
+    border: solid 3px #ffb400;
     background-color: #fff;
     color: #7153ff;
   }
 `
 
 export const Select = styled.select`
-  /* padding: 10px; */
+  width: 130px;
   height: 40px;
   color: #7153ff;
   margin: 0px 10px 0px 10px;
@@ -29,6 +31,7 @@ export const Select = styled.select`
   font-family: 'Montserrat', sans-serif;
   text-align: center;
   &:hover {
+    border: solid 3px #ffb400;
     background-color: #fff;
     color: #7153ff;
   }
@@ -39,8 +42,16 @@ export const BookSection = styled.section`
 export const TitleWrapper = styled.div`
   display: flex;
   flex-direction: row;
-
   align-items: center;
+  @media (max-width: 1020px) {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 15px;
+  }
+  @media (max-width: 550px) {
+    display: grid;
+    grid-template-columns: auto;
+  }
 `
 export const BookTitleHeader = styled.div`
   background-color: #7153ff;
@@ -89,7 +100,6 @@ export const BookListWrapper = styled.div`
 `
 
 export const BookCard = styled.div`
-  /* padding: 20px 40px 0px 40px; */
   height: 300px;
   word-break: break-all;
   background-color: rgba(255, 255, 255, 0.4);
@@ -108,4 +118,10 @@ export const BookCard = styled.div`
     font-size: 24px;
     font-weight: 800;
   }
+`
+
+export const ListHeader = styled.div`
+  height: 70px;
+  display: flex;
+  align-items: center;
 `

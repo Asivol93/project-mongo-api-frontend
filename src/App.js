@@ -1,25 +1,20 @@
-import React, { useState } from 'react'
-import { Routes, Route, generatePath, useNavigate } from 'react-router-dom'
-import { TitleWrapper, Button, Select } from 'components/StyledComponents'
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
 import { StartPage } from 'components/StartPage'
 import { BookList } from 'components/BookList'
 import { RatingsList } from 'components/RatingsList'
+import { LengthList } from 'components/LengthList'
+import { About } from 'components/About'
 
 export const App = () => {
-  const navigate = useNavigate()
-
   return (
     <>
       <Routes>
         <Route index path='/' element={<StartPage />} />
-
         <Route path='/books' element={<BookList />} />
-        <Route path={'/books/ratings/:lowrating'} element={<RatingsList />} />
-        <Route
-          path={'/books/ratings/:mediumrating'}
-          element={<RatingsList />}
-        />
-        <Route path={'/books/ratings/:highrating'} element={<RatingsList />} />
+        <Route path='/books/ratings/:rating' element={<RatingsList />} />
+        <Route path='/books/pages/:length' element={<LengthList />} />
+        <Route path='/about' element={<About />} />
       </Routes>
     </>
   )

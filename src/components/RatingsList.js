@@ -2,48 +2,47 @@ import React, { useState, useEffect } from 'react'
 import { generatePath, useNavigate, useParams } from 'react-router-dom'
 import {
   BookSection,
-  TitleWrapper,
   BookTitleHeader,
   BackgroundImage1,
   BookInfo,
   BookCard,
   BookListWrapper,
   Button,
-  Select,
+  ListHeader,
 } from './StyledComponents'
 
 const Background = 'https://i.imgur.com/fUBGg4L.jpg'
 
 export const RatingsList = () => {
-  const { rating } = useParams
   const [ratingsList, setRatingsList] = useState([])
   const navigate = useNavigate()
+  const URL_RATING = (rating) =>
+    `https://carling-bookdata-api.herokuapp.com/books/ratings/${rating}`
+  const { rating } = useParams()
 
   useEffect(() => {
-    fetchRatingsList()
-  }, [rating])
-
-  const fetchRatingsList = () => {
-    fetch(`https://carling-bookdata-api.herokuapp.com/books/ratings/${rating}`)
+    fetch(URL_RATING(rating))
       .then((res) => res.json())
       .then((data) => setRatingsList(data))
-  }
+  }, [rating])
 
   return (
     <>
       <BackgroundImage1 src={Background} alt='girl reading' />
       <BookSection>
-        <Button
-          onClick={(event) =>
-            navigate(
-              generatePath('/', {
-                book: event.target.value,
-              })
-            )
-          }
-        >
-          Go back
-        </Button>
+        <ListHeader>
+          <Button
+            onClick={(event) =>
+              navigate(
+                generatePath('/', {
+                  book: event.target.value,
+                })
+              )
+            }
+          >
+            Go back
+          </Button>
+        </ListHeader>
         <BookListWrapper>
           {ratingsList.map((book) => (
             <BookCard key={book._id}>

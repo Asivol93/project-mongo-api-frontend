@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { generatePath, useNavigate } from 'react-router-dom'
+import { generatePath, useNavigate, useParams } from 'react-router-dom'
 import {
   BookSection,
   BookTitleHeader,
+  BackgroundImage1,
   BookInfo,
   BookCard,
-  BackgroundImage1,
   BookListWrapper,
   Button,
   ListHeader,
@@ -13,27 +13,22 @@ import {
 
 const Background = 'https://i.imgur.com/fUBGg4L.jpg'
 
-export const BookList = () => {
-  const [bookList, setBookList] = useState([])
+export const LengthList = () => {
+  const [lengthList, setLengthList] = useState([])
   const navigate = useNavigate()
+  const URL_RATING = (length) =>
+    `https://carling-bookdata-api.herokuapp.com/books/pages/${length}`
+  const { length } = useParams()
 
   useEffect(() => {
-    fetchBookList()
-    return () => {
-      //This return statement unmounts the component from the DOM. Using a console.log to return something for it to work.
-      console.log('Unmount component')
-    }
-  }, [])
-
-  const fetchBookList = () => {
-    fetch('https://carling-bookdata-api.herokuapp.com/books')
+    fetch(URL_RATING(length))
       .then((res) => res.json())
-      .then((data) => setBookList(data))
-  }
+      .then((data) => setLengthList(data))
+  }, [length])
 
   return (
     <>
-      <BackgroundImage1 src={Background} alt='purple' />
+      <BackgroundImage1 src={Background} alt='girl reading' />
       <BookSection>
         <ListHeader>
           <Button
@@ -49,7 +44,7 @@ export const BookList = () => {
           </Button>
         </ListHeader>
         <BookListWrapper>
-          {bookList.map((book) => (
+          {lengthList.map((book) => (
             <BookCard key={book._id}>
               <BookTitleHeader>
                 <h2>{book.authors}</h2>
